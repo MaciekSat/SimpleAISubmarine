@@ -1,0 +1,165 @@
+@import "submarineStyles.css";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@300;500;700&display=swap');
+
+/* 20px = 1m */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+#sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 61vh;
+    background: linear-gradient(to top, #87ceeb, #d7d7d7);
+    overflow: hidden;
+    filter: invert(1) hue-rotate(180deg) brightness(0.2);
+}
+
+#ocean {
+    position: absolute;
+    top: 60vh;
+    left: 0;
+    width: 100%;
+    height: 50000px;
+    background: linear-gradient(to bottom, #85bae0 2%, 10%, #000515 30%);
+    filter: brightness(0.2);
+}
+
+.cloud img {
+    position: absolute;
+    width: 300px;
+    opacity: 0.8;
+}
+
+#controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background-color: black;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+#controlsContainer {
+    width: 20%;
+    height: 100%;
+    background-color: gray;
+    box-shadow: white 0 0 10px;
+    border-radius: 10px;
+    border: 2px solid #888888;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#controlsContainer button {
+    width: 50px;
+    height: 50px;
+    background-color: #414141;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#controlsContainer button img {
+    width: 100%;
+}
+
+#controlsContainer button:hover {
+    background-color: #177e17;
+}
+
+#crewManagement {
+    width: 40%;
+    height: 100%;
+    background-color: gray;
+    box-shadow: white 0 0 10px;
+    border-radius: 10px;
+    border: 2px solid #888888;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-family: Orbitron, monospace;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#crewManagement section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.crewButton {
+    width: 20px;
+    height: 20px;
+    background-color: #414141;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 10px;
+}
+
+#measurements {
+    width: 40%;
+    height: 100%;
+    background-color: gray;
+    box-shadow: white 0 0 10px;
+    border-radius: 10px;
+    border: 2px solid #888888;
+    padding: 10px;
+    font-family: Orbitron, monospace;
+    color: #ffffff;
+}
+
+#measurements section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+#labels {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #087500;
+    font-family: Orbitron, monospace;
+    font-size: 18px;
+    text-shadow: 1px 1px 2px black;
+    transform: scale(0.8);
+    background-color: #919191;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+#labels p {
+    background-image: url("./images/Label.png");
+    width: 250px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SubmarineAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./script.js" type="module"></script>
+
+</head>
+<body onload="init()">
+<div id="sky"></div>
+<div id="ocean"></div>
+<div id="controls">
+    <div id="controlsContainer">
+        <button id="co2ScrubberBtn" onclick="handleButton('scrubber')" data-state="off">
+            <img src="./images/Icons/co2ScrubberIcon.png" alt="CO2 Icon">
+        </button>
+        <button id="generatorBtn" onclick="handleButton('generator')" data-state="off">
+            <img src="./images/Icons/generatorIcon.png" alt="Generator Icon">
+        </button>
+        <button id="reactorBtn" onclick="handleButton('reactor')" data-state="off">
+            <img src="./images/Icons/reactorIcon.png" alt="Reactor Icon">
+        </button>
+        <button id="controlSystemBtn" onclick="handleButton('control')" data-state="off">
+            <img src="./images/Icons/controlSystemIcon.png" alt="ControlSystem Icon">
+        </button>
+        <button id="sensorsBtn" onclick="handleButton('sensors')" data-state="off">
+            <img src="./images/Icons/sensorsIcon.png" alt="Sensors Icon">
+        </button>
+    </div>
+    <!--    // co2 scrubber, generator, reactor, control system, sensors-->
+    <div id="crewManagement">
+        <section>
+            <p id="scrubberCrew">Scrubber crew</p>
+            <button class="crewButton" onclick="handleCrew('scrubber', -1)">-</button>
+            <p id="scrubberCrewAmount">0/3</p>
+            <button class="crewButton" onclick="handleCrew('scrubber', 1)">+</button>
+        </section>
+        <section>
+            <p id="generatorCrew">Generator crew</p>
+            <button class="crewButton" onclick="handleCrew('generator', -1)">-</button>
+            <p id="generatorCrewAmount">0/3</p>
+            <button class="crewButton" onclick="handleCrew('generator', 1)">+</button>
+        </section>
+        <section>
+            <p id="reactorCrew">Reactor crew</p>
+            <button class="crewButton" onclick="handleCrew('reactor', -1)">-</button>
+            <p id="reactorCrewAmount">0/3</p>
+            <button class="crewButton" onclick="handleCrew('reactor', 1)">+</button>
+        </section>
+        <section>
+            <p id="controlCrew">Control crew</p>
+            <button class="crewButton" onclick="handleCrew('control', -1)">-</button>
+            <p id="controlCrewAmount">0/3</p>
+            <button class="crewButton" onclick="handleCrew('control', 1)">+</button>
+        </section>
+        <section>
+            <p id="sensorsCrew">Sensors crew</p>
+            <button class="crewButton" onclick="handleCrew('sensors', -1)">-</button>
+            <p id="sensorsCrewAmount">0/3</p>
+            <button class="crewButton" onclick="handleCrew('sensors', 1)">+</button>
+        </section>
+    </div>
+    <div id="measurements">
+        <section>
+            <p style="font-style: italic">Speed</p>
+            <p id="speed">0 m/s</p>
+            <p>Max speed</p>
+            <p id="maxSpeed">0 m/s</p>
+        </section>
+        <section>
+            <p style="font-style: italic">Timer</p>
+            <p id="time">00:00</p>
+            <p id="days">0 days</p>
+        </section>
+        <section>
+            <p style="font-style: italic">Depth</p>
+            <p id="depth">0 AMSL</p>
+        </section>
+        <section>
+            <p style="font-style: italic">Bank fill</p>
+            <progress id="bank1FillBar" value="10" max="100" style="width: 25%"></progress>
+            <p id="bank1Fill">10%</p>
+            <progress id="bank2FillBar" value="10" max="100" style="width: 25%"></progress>
+            <p id="bank2Fill">10%</p>
+        </section>
+    </div>
+</div>
+<div id="labels">
+    <p>Labels</p>
+    <p id="oxygenLabel"></p>
+    <p id="co2Label"></p>
+    <p id="energyLabel"></p>
+    <p id="fuelLabel"></p>
+    <p id="foodLabel"></p>
+    <p id="crewLabel"></p>
+</div>
+</body>
+</html>

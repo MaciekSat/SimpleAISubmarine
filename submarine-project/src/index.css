@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import url('satoshi.css');
+@import "flowbite-react/plugin/tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+
+@source "../.flowbite-react/class-list.json";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 9999px;
+    cursor: pointer;
+}
