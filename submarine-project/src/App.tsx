@@ -3,12 +3,12 @@ import { Dashboard } from './Dashboard.tsx';
 import { useState } from 'react';
 
 export default function App() {
-    const [active, setActive] = useState('dashboard');
+    const [active, setActive] = useState('main');
 
     return (
         <main>
             {active === 'main' && <MainMenu onNext={() => setActive('dashboard')} />}
-            {active === 'dashboard' && <Dashboard />}
+            {active === 'dashboard' && <Dashboard onNext={() => setActive('simulation')} />}
         </main>
     );
 }
