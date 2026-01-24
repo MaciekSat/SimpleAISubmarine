@@ -37,7 +37,7 @@ export default class Modules {
         } else {
             this.submarine.fuel = 0;
         }
-        
+
     }
 
     reactor(efficiency) {
@@ -48,7 +48,7 @@ export default class Modules {
         } else {
             background.style.backgroundImage = "url('./images/ReactorOff.png')";
         }
-        this.submarine.maxSpeed = 10 * efficiency;
+        this.submarine.maxSpeed = 10 * (efficiency ** 2);
     }
 
     controlSystem(efficiency) {
