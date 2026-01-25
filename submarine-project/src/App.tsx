@@ -7,7 +7,7 @@ export default function App() {
     const [active, setActive] = useState('simulation');
 
     return (
-        <main>
+        <main className="overflow-hidden">
             {active === 'main' && <MainMenu onNext={() => setActive('dashboard')} />}
             {active === 'dashboard' && <Dashboard onNext={() => setActive('simulation')} />}
             {active === 'simulation' && <Simulation />}

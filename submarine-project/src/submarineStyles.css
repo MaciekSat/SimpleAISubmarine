@@ -1,5 +1,5 @@
 .submarine {
-    background-image: url('./images/Submarine.png');
+    background-image: url('../img/Submarine.png');
     position: absolute;
     background-size: auto 100%;
     width: 2400px;
@@ -9,7 +9,7 @@
 }
 
 .engine {
-    background-image: url('./images/ReactorOn.png');
+    background-image: url('../img/ReactorOn.png');
     position: absolute;
     background-size: auto 100%;
     width: 800px;
@@ -18,7 +18,7 @@
 }
 
 .chambers {
-    background-image: url('./images/Chambers.png');
+    background-image: url('../img/Chambers.png');
     position: absolute;
     background-size: auto 100%;
     width: 1200px;
@@ -47,7 +47,7 @@
 }
 
 .crewQuarters {
-    background-image: url('./images/CrewQuarters.png');
+    background-image: url('../img/CrewQuarters.png');
     position: absolute;
     background-size: auto 100%;
     width: 450px;
@@ -56,7 +56,7 @@
 }
 
 .generator {
-    background-image: url('./images/GeneratorOn.png');
+    background-image: url('../img/GeneratorOn.png');
     position: absolute;
     background-size: auto 100%;
     width: 250px;
@@ -65,7 +65,7 @@
 }
 
 .co2Scrubber {
-    background-image: url('./images/ScrubberOn.png');
+    background-image: url('../img/ScrubberOn.png');
     position: absolute;
     background-size: auto 100%;
     width: 150px;
@@ -74,7 +74,7 @@
 }
 
 .kitchen {
-    background-image: url('./images/Kitchen.png');
+    background-image: url('../img/Kitchen.png');
     position: absolute;
     background-size: auto 100%;
     width: 350px;
@@ -83,7 +83,7 @@
 }
 
 .controlRoom {
-    background-image: url('./images/ControlRoomRDROn.png');
+    background-image: url('../img/ControlRoomRDROn.png');
     position: absolute;
     background-size: auto 100%;
     width: 450px;

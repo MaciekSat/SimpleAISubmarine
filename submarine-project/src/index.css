@@ -1,11 +1,37 @@
-@import "tailwindcss";
 @import url('satoshi.css');
+@import "tailwindcss";
 @import "flowbite-react/plugin/tailwindcss";
 @import "tailwindcss/preflight.css" layer(base);
+@import "./submarineStyles.css";
 
 @source "../.flowbite-react/class-list.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+#sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 61vh;
+    background: linear-gradient(to top, #87ceeb, #d7d7d7);
+    overflow: hidden;
+}
+
+#ocean {
+    position: absolute;
+    top: 60vh;
+    left: 0;
+    width: 100vw;
+    height: 50000px;
+    background: linear-gradient(to bottom, #85bae0 2%, 10%, #000515 30%);
+}
+
+.cloud img {
+    position: absolute;
+    width: 300px;
+    opacity: 0.8;
+}
 
 .slider {
     -webkit-appearance: none;
