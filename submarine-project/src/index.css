@@ -8,6 +8,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+
 #sky {
     position: absolute;
     top: 0;
@@ -24,14 +25,26 @@
     left: 0;
     width: 100vw;
     height: 50000px;
-    background: linear-gradient(to bottom, #85bae0 2%, 10%, #000515 30%);
+    background: linear-gradient(to bottom, #1f6da8 1%, 8%, #000515 50%);
+}
+
+.cloud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: auto;
+    pointer-events: none;
 }
 
 .cloud img {
-    position: absolute;
-    width: 300px;
-    opacity: 0.8;
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
 }
+
 
 .slider {
     -webkit-appearance: none;

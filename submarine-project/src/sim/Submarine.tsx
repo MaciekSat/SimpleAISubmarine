@@ -1,3 +1,5 @@
+import { Modules } from './Modules.tsx';
+
 export class Submarine {
     oxygen = 10000; // initial oxygen level
     co2 = 0; // initial co2 level
@@ -16,7 +18,7 @@ export class Submarine {
     depth = 0;
     buoyancy = 0;
 
-    // modules = new Modules(this);
+    modules = new Modules(this);
     modulesEfficiency = [0.0, 0.0, 0.0, 0.0, 0.0]; // co2 scrubber, generator, reactor, control system, sensors
     modulesCrew = [0, 0, 0, 0, 0]; // crew assigned to each module
 
@@ -93,14 +95,11 @@ export class Submarine {
             return;
         }
 
-        /*
-        // Modules activation
         this.modules.co2Scrubber(this.modulesEfficiency[0] * this.efficiencyClamp(this.modulesCrew[0]));
         this.modules.generator(this.modulesEfficiency[1] * this.efficiencyClamp(this.modulesCrew[1]));
         this.modules.reactor(this.modulesEfficiency[2] * this.efficiencyClamp(this.modulesCrew[2]));
         this.modules.controlSystem(this.modulesEfficiency[3] * this.efficiencyClamp(this.modulesCrew[3]));
         this.modules.sensors(this.modulesEfficiency[4] * this.efficiencyClamp(this.modulesCrew[4]));
-         */
 
         // update buoyancy
         this.buoyancy = -(Math.max(Math.min(this.bank1 + this.bank2, 160), 40) - 100) / 60; // normalize between -1
@@ -112,6 +111,8 @@ export class Submarine {
 
         // update food level
         this.food -= this.maxCrew * 0.001; // crew consumes food
+
+        this.offset += this.speed;
 
         this.updateLabels();
     }

@@ -17,48 +17,29 @@ export class Environment {
     spawnClouds() {
         if (!this.sky) return;
 
-        for (let i = 0; i < 20; i++) {
-            let cloud: HTMLDivElement = document.createElement('div');
-            cloud.className = 'cloud';
-            cloud.innerHTML = `<img src="../img/cloud.png" alt="cloud">`;
-            cloud.style.position = 'absolute';
-            cloud.style.top = Math.random() * 100 + 'px';
-            cloud.style.left = i * (450 / 2) + Math.random() * 450 + 'px';
-            cloud.style.zIndex = '0.5';
-            cloud.style.opacity = '0.6';
-            cloud.style.filter = 'blur(2px)';
-            cloud.style.transform = 'scale(1)';
-            this.sky.appendChild(cloud);
-            this.cloudsClose.push(cloud);
+        const cloudLayers = [
+            { count: 10, spread: 450, scale: 1, opacity: 0.6, blur: 2, z: 3, array: this.cloudsClose },
+            { count: 5, spread: 600, scale: 1.5, opacity: 0.3, blur: 3, z: 2, array: this.cloudsFar },
+            { count: 3, spread: 900, scale: 2, opacity: 0.2, blur: 5, z: 1, array: this.cloudsFarAway },
+        ];
+
+        for (const layer of cloudLayers) {
+            for (let i = 0; i < layer.count; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.innerHTML = `<img src="../img/cloud.png" alt="cloud">`;
+                cloud.style.top = `${Math.random() * 100 + (layer.count === 3 ? 50 : layer.count === 5 ? 25 : 0)}px`;
+                cloud.style.left = `${i * (layer.spread / 2) + Math.random() * layer.spread}px`;
+                cloud.style.zIndex = layer.z.toString();
+                cloud.style.opacity = layer.opacity.toString();
+                cloud.style.filter = `blur(${layer.blur}px)`;
+                cloud.style.transform = `scale(${layer.scale})`;
+                this.sky.appendChild(cloud);
+                layer.array.push(cloud);
+            }
         }
-        for (let i = 0; i < 10; i++) {
-            let cloud = document.createElement('div');
-            cloud.className = 'cloud';
-            cloud.innerHTML = `<img src="../img/cloud.png" alt="cloud">`;
-            cloud.style.position = 'absolute';
-            cloud.style.top = Math.random() * 100 + 25 + 'px';
-            cloud.style.left = i * (600 / 2) + Math.random() * 600 + 'px';
-            cloud.style.zIndex = '0.5';
-            cloud.style.opacity = '0.3';
-            cloud.style.filter = 'blur(3px)';
-            cloud.style.transform = 'scale(1.5)';
-            this.sky.appendChild(cloud);
-            this.cloudsFar.push(cloud);
-        }
-        for (let i = 0; i < 5; i++) {
-            let cloud = document.createElement('div');
-            cloud.className = 'cloud';
-            cloud.innerHTML = `<img src="../img/cloud.png" alt="cloud">`;
-            cloud.style.position = 'absolute';
-            cloud.style.top = Math.random() * 100 + 50 + 'px';
-            cloud.style.left = i * (900 / 2) + Math.random() * 900 + 'px';
-            cloud.style.zIndex = '0.5';
-            cloud.style.opacity = '0.2';
-            cloud.style.filter = 'blur(5px)';
-            cloud.style.transform = 'scale(2)';
-            this.sky.appendChild(cloud);
-            this.cloudsFarAway.push(cloud);
-        }
+
+        console.log('happened');
     }
 
     updateTimer() {
@@ -71,35 +52,29 @@ export class Environment {
     }
 
     moveEnvironment(offset: number) {
-        for (let i = 0; i < this.cloudsClose.length; i++) {
-            const el = this.cloudsClose[i];
-            let left = parseFloat(el.style.left || '0');
+        const layers = [
+            { clouds: this.cloudsClose, speed: 0.04, reset: 600 },
+            { clouds: this.cloudsFar, speed: 0.02, reset: 1000 },
+            { clouds: this.cloudsFarAway, speed: 0.01, reset: 1500 },
+        ];
 
-            if (left < -450) {
-                left = 3000;
+        for (const layer of layers) {
+            for (const el of layer.clouds) {
+                let left = parseFloat(getComputedStyle(el).left);
+                left -= offset * layer.speed;
+
+                if (left < -layer.reset) {
+                    left = layer.reset * 3;
+                }
+
+                el.style.left = `${left}px`;
             }
-
-            el.style.left = `${left - offset * 0.1}px`;
-        }
-
-        for (let i = 0; i < this.cloudsFar.length; i++) {
-            const el = this.cloudsFar[i];
-            const left = parseFloat(el.style.left || '0');
-
-            el.style.left = `${left - offset * 0.07}px`;
-        }
-
-        for (let i = 0; i < this.cloudsFarAway.length; i++) {
-            const el = this.cloudsFarAway[i];
-            const left = parseFloat(el.style.left || '0');
-
-            el.style.left = `${left - offset * 0.04}px`;
         }
     }
 
     increaseDepth(amount: number) {
         if (!this.ocean) return;
 
-        this.ocean.style.transform = `translateY(${-amount}px)`;
+        this.ocean.style.transform = `translateY(${amount}px)`;
     }
 }
