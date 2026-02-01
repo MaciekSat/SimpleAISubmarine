@@ -1,15 +1,13 @@
-export default class Neuron {
-    constructor() {
-        this.weights = [];
-        this.bias = 0.01;
-        this.output = 0;
-    }
+export class Neuron {
+    weights: number[] = [];
+    bias: number = 0.01;
+    output: number = 0;
 
-    activation(input) {
+    activation(input: number) {
         return Math.tanh(input);
     }
 
-    feedForward(inputs) {
+    feedForward(inputs: number[]) {
         let sum = 0;
         for (let i = 0; i < inputs.length; i++) {
             sum += inputs[i] * this.weights[i];
@@ -17,5 +15,4 @@ export default class Neuron {
         sum += this.bias;
         this.output = this.activation(sum);
     }
-
 }

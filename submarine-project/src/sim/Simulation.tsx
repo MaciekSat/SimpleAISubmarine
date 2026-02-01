@@ -118,7 +118,7 @@ export function Simulation() {
         <section className="simulation fixed h-screen w-screen overflow-hidden bg-slate-900">
             <div id="sky"></div>
             <div id="ocean"></div>
-            <div className="absolute flex h-screen w-screen flex-col justify-between">
+            <div className="absolute z-20 flex h-screen w-screen flex-col justify-between">
                 <div className="m-4 w-fit rounded-3xl border-2 border-gray-500 bg-gray-600 p-2">
                     <div className="flex flex-col gap-2 font-mono text-green-400 text-shadow-green-500 text-shadow-sm *:rounded-2xl *:border-2 *:border-green-700 *:bg-green-800 *:px-6 *:py-2 *:text-center">
                         <div>Labels</div>

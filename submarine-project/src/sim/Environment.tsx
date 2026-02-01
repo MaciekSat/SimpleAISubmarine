@@ -38,8 +38,6 @@ export class Environment {
                 layer.array.push(cloud);
             }
         }
-
-        console.log('happened');
     }
 
     updateTimer() {

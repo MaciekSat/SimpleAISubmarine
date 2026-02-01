@@ -1,12 +1,10 @@
-import Neuron from './Neuron.js';
+import { Neuron } from './Neuron.tsx';
 
-export default class NeuralNetwork {
-    constructor() {
-        this.sensorsCount = 0; // initial value depends on inputs
-        this.outputsCount = 4; // forward, left, right, backward or other actions
-        this.hiddenLayers = 4;
-        this.layers = [];
-    }
+export class NeuralNetwork {
+    sensorsCount: number = 0; // initial value depends on inputs
+    outputsCount: number = 4; // forward, left, right, backward or other actions
+    hiddenLayers: number = 4;
+    layers: Array<Array<Neuron>> = [];
 
     // find a way to tell AI to avoid using specific paths that lead to failure
     // also try to encourage it to try to build consciousness based on well established paths
@@ -49,32 +47,32 @@ export default class NeuralNetwork {
     // for depth control [more depth -> more pressure, some pressure threshold -> implosion -> negative reward]
     // not like this [at certain depth -> implosion] because it will learn to stay above that depth
 
-    createLayers(inputsCount) {
+    createLayers(inputsCount: number) {
         this.sensorsCount = inputsCount;
         // create empty layers
         for (let i = 0; i < this.hiddenLayers + 2; i++) {
-            let layer = [];
+            let layer: Array<Neuron> = [];
             this.layers.push(layer);
         }
-        
+
         // populate first layer
-        let lastLayerCount = 0;
+        let lastLayerCount: number = 0;
         for (let i = 0; i < this.sensorsCount; i++) {
-            let neuron = new Neuron;
+            let neuron: Neuron = new Neuron();
             neuron.weights.push(1); // always activated
             this.layers[0].push(neuron);
             lastLayerCount = i + 1;
         }
         // populate hidden layers
         // numbers of columns
-        let hiddenLayerSize = lastLayerCount * 2;
+        let hiddenLayerSize: number = lastLayerCount * 2;
         for (let i = 0; i < this.hiddenLayers; i++) {
             // numbers of neurons in each column
             for (let j = 0; j < hiddenLayerSize; j++) {
-                let neuron = new Neuron;
+                let neuron: Neuron = new Neuron();
                 // populate neuron weights
                 for (let k = 0; k < lastLayerCount; k++) {
-                    let rand = Math.round((Math.random() * 2 - 1) * 100) / 100;
+                    let rand: number = Math.round((Math.random() * 2 - 1) * 100) / 100;
                     neuron.weights.push(rand);
                 }
                 this.layers[i + 1].push(neuron);
@@ -83,33 +81,33 @@ export default class NeuralNetwork {
         }
         // populate output layer
         for (let i = 0; i < this.outputsCount; i++) {
-            let neuron = new Neuron;
+            let neuron: Neuron = new Neuron();
             // populate neuron weights
             for (let j = 0; j < lastLayerCount; j++) {
-                let rand = Math.round((Math.random() * 2 - 1) * 100) / 100;
+                let rand: number = Math.round((Math.random() * 2 - 1) * 100) / 100;
                 neuron.weights.push(rand);
             }
             this.layers[this.hiddenLayers + 1].push(neuron);
         }
     }
 
-    fireNeurons(inputs) {
+    fireNeurons(inputs: number[]) {
         // error checking
         if (inputs.length !== this.sensorsCount) {
             console.error(`Expected ${this.sensorsCount} inputs, but got ${inputs.length}`);
             return;
         }
-        
+
         // layers
-        let previousOutputs = [];
+        let previousOutputs: number[] = [];
         console.log(`Layer 0 has ${this.layers[0].length} neurons`);
         for (let i = 0; i < this.layers[0].length; i++) {
             this.layers[0][i].feedForward([inputs[i]]);
             previousOutputs.push(this.layers[0][i].output);
         }
-        
+
         // hidden layers + output layer
-        let currentOutputs = [];
+        let currentOutputs: number[] = [];
         for (let i = 1; i < this.layers.length; i++) {
             console.log(`Layer ${i} has ${this.layers[i].length} neurons`);
             // each neuron in layer
